@@ -4,9 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
         .legend {
             display: flex;
-            justify-content: space-between;
             font-family: Arial, sans-serif;
             font-size: 14px;
             margin-top: 20px;
