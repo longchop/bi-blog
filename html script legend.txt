@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .legend {
+            display: flex;
+            justify-content: space-between;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+
+        .above-average {
+            background-color: darkblue;
+        }
+
+        .below-average {
+            background-color: lightblue;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Your Chart Content Goes Here -->
+
+    <!-- Legend -->
+    <div class="legend">
+        <div class="legend-item">
+            <div class="dot above-average"></div>
+            <span>Above Average</span>
+        </div>
+        <div class="legend-item">
+            <div class="dot below-average"></div>
+            <span>Below Average</span>
+        </div>
+    </div>
+
+</body>
+</html>
