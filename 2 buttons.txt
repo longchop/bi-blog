@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Two Buttons</title>
   <style>
+    body {
+      background-color: rgba(255, 255, 255, 0); /* Transparent background */
+    }
+
     h1 {
       font-size: 24px;
       margin-bottom: 10px;
@@ -12,12 +16,12 @@
 
     .button-container {
       display: flex;
-      justify-content: space-between; /* Distribute space between the buttons */
+      justify-content: space-between;
       margin-top: -10px;
     }
 
     button {
-      flex: 1; /* Make buttons flexible */
+      flex: 1;
       padding: 10px 20px;
       border: none;
       cursor: pointer;
