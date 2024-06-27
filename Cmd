@@ -1,0 +1,18 @@
+@echo off
+
+:: Path to the CSV file you want to zip
+set csvFilePath=C:\path\to\yourfile.csv
+
+:: Path where you want to save the zipped file
+set zipFilePath=C:\path\to\yourfile.zip
+
+:: Password to protect the zip file
+set password=YourPassword
+
+:: Path to 7z.exe (if it's not in the system PATH, specify the full path)
+set sevenZipPath=C:\Program Files\7-Zip\7z.exe
+
+:: Command to zip and password protect the file
+"%sevenZipPath%" a -p%password% "%zipFilePath%" "%csvFilePath%"
+
+echo CSV file has been zipped and password protected successfully.
