@@ -1,0 +1,19 @@
+# Path to the CSV file you want to zip
+$csvFilePath = "C:\path\to\yourfile.csv"
+
+# Path where you want to save the zipped file
+$zipFilePath = "C:\path\to\yourfile.zip"
+
+# Password to protect the zip file
+$password = "YourPassword"
+
+# Path to 7z.exe (if it's not in the system PATH, you need to specify the full path)
+$sevenZipPath = "C:\Program Files\7-Zip\7z.exe"
+
+# Command to zip and password protect the file
+$command = "& `"$sevenZipPath`" a -p$password `"$zipFilePath`" `"$csvFilePath`""
+
+# Execute the command
+Invoke-Expression $command
+
+Write-Host "CSV file has been zipped and password protected successfully."
