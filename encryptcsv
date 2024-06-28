@@ -1,0 +1,39 @@
+param (
+    [string]$FilePath,
+    [string]$Password,
+    [string]$EncryptedFilePath
+)
+
+# Convert password to a byte array
+$passwordBytes = [System.Text.Encoding]::UTF8.GetBytes($Password)
+
+# Ensure the password is 32 bytes (AES-256)
+if ($passwordBytes.Length -lt 32) {
+    $passwordBytes = $passwordBytes + (0..(31 - $passwordBytes.Length)) # pad with zeros
+} elseif ($passwordBytes.Length -gt 32) {
+    $passwordBytes = $passwordBytes[0..31] # trim to 32 bytes
+}
+
+# Create an AES encryption object
+$aes = [System.Security.Cryptography.Aes]::Create()
+$aes.Key = $passwordBytes
+$aes.IV = @(0..15) # Initialize the IV (all zeros)
+
+# Create a file stream to read the input file
+$fileStream = [System.IO.File]::OpenRead($FilePath)
+
+# Create a file stream to write the encrypted file
+$encryptedStream = [System.IO.File]::OpenWrite($EncryptedFilePath)
+
+# Create a crypto stream to handle the encryption
+$cryptoStream = New-Object System.Security.Cryptography.CryptoStream($encryptedStream, $aes.CreateEncryptor(), [System.Security.Cryptography.CryptoStreamMode]::Write)
+
+# Read from the input file and write to the crypto stream
+$fileStream.CopyTo($cryptoStream)
+
+# Close the streams
+$cryptoStream.Close()
+$fileStream.Close()
+$encryptedStream.Close()
+
+Write-Host "CSV file has been encrypted successfully."
