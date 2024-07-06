@@ -1,0 +1,24 @@
+param (
+    [string]$csvPath,
+    [string]$xlsxPath,
+    [string]$password
+)
+
+# Import the CSV and export to XLSX
+Import-Csv $csvPath | Export-Excel -Path $xlsxPath
+
+# Create a COM object to interact with Excel
+$excel = New-Object -ComObject Excel.Application
+$excel.Visible = $false
+$workbook = $excel.Workbooks.Open($xlsxPath)
+
+# Password protect the workbook
+$workbook.Password = $password
+$workbook.Save()
+$workbook.Close($true)
+
+# Cleanup
+$excel.Quit()
+[System.Runtime.Interopservices.Marshal]::ReleaseComObject($excel) | Out-Null
+[System.GC]::Collect()
+[System.GC]::WaitForPendingFinalizers()
